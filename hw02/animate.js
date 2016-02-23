@@ -1,20 +1,25 @@
-var c = document.getElementById("flag"); //searches the DOM for an element with the given ID and returns it (null if none iirc)
-var ctx = c.getContext("2d"); //gives the canvas a context with which we can interact/draw on it with
+var c = document.getElementById("flag");
+var ctx = c.getContext("2d");
 
 var circle = document.getElementById("circle");
+var stop = document.getElementById("stop");
 
-ctx.fillStyle = '#FF0000'; //sets the color/style for filling (doesn't actually fill)
+ctx.fillStyle = '#FF0000';
 
 function drawBorder(){
-	ctx.strokeRect(0,0,500,500); //really cheap border lol
+	ctx.strokeRect(0,0,500,500);
 }
 
 drawBorder();
 
 var r = 0;
 var grow = true;
+var stopped = false;
 
 var draw = function(){
+	if( stopped ){
+		return;
+	}
 	if( grow ){
 		r += 1;
 	}else{
@@ -38,3 +43,6 @@ var draw = function(){
 }
 
 circle.addEventListener("click", draw);
+stop.addEventListener("click", function(){
+	stopped = true;
+})
