@@ -1,0 +1,22 @@
+  .:: ::                .::  .::       .::                     
+.::    .::            .:     .::       .::                     
+ .::         .::    .:.: .:.:.: .:     .::   .::    .::     .::
+   .::     .::  .::   .::    .::   .:: .:: .:   .::  .::   .:: 
+      .:: .::    .::  .::    .::  .:   .::.::::: .::  .:: .::  
+.::    .:: .::  .::   .::    .::  .:   .::.:           .:.::   
+  .:: ::     .::      .::     .::  .:: .::  .::::       .::    
+                                                               
+                                                               
+Creating SVG elements in javascript
+document.createElementNS( <NAMESPACE IDENTIFIER>, <ELEMENT> );
+
+example:
+var c1 = document.getElementNS( "http://www.w3.org/2000/svg", circle);
+
+Once created, you can modify it with setAttribute calls
+
+c1.setAttribute("cx", "200");
+
+To add the element to your svg contqiner, use the appendChild function
+var pic = document.getElementById("svgid");
+pic.appendChild(c1);
