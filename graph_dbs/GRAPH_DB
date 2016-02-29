@@ -1,0 +1,100 @@
+ ______  ______  ______  ______  __  __       _____   ______  ______  ______  ______  ______  ______  ______  ______    
+/\  ___\/\  == \/\  __ \/\  == \/\ \_\ \     /\  __`./\  __ \/\__  _\/\  __ \/\  == \/\  __ \/\  ___\/\  ___\/\  ___\   
+\ \ \__ \ \  __<\ \  __ \ \  _-/\ \  __ \    \ \ \/\ \ \  __ \/_/\ \/\ \  __ \ \  __<\ \  __ \ \___  \ \  __\\ \___  \  
+ \ \_____\ \_\ \_\ \_\ \_\ \_\   \ \_\ \_\    \ \____/\ \_\ \_\ \ \_\ \ \_\ \_\ \_____\ \_\ \_\/\_____\ \_____\/\_____\ 
+  \/_____/\/_/ /_/\/_/\/_/\/_/    \/_/\/_/     \/____/ \/_/\/_/  \/_/  \/_/\/_/\/_____/\/_/\/_/\/_____/\/_____/\/_____/ 
+                                                                                                                        
+_____________________________________________________________________________________________________________________
+               ___      ___       __  
+|  | |__|  /\   |     |  |     | /__` .
+|/\| |  | /--\  |     |  |     | .__/ .
+
+Graph Databases: A database model that stores data in vertices (nodes) and edges as opposed to tables or documents. 
+The equivalent of a field in a table would be a vertex in a graph, and a data descriptor would be an edge. Individual nodes in the database store data, and the edges define the relationship between different nodes. Since nodes are all connected by edges and each node knows its connected nodes, there is no need for indices. Accessing data in graph databases is done through traversal, much like trees. 
+
+ __   ___           ___    __                          __      __   __        __           __    __    __     
+|__) |__  |     /\   |  | /  \ |\ |  /\  |       \  / /__`    / _` |__)  /\  |__) |__|    |  \  |__)  /__` .
+|  \ |___ |___ /--\  |  | \__/ | \| /--\ |___     \/  .__/    \__/ |  \ /--\ |    |  |    |__/  |__)  .__/ .
+
+
+Ironically, relational databases aren't good at representing relationships between multiple data items (complex queries that may span across multiple tables). 
+Relational Databases also have rigid schema, and query execution time increases with larger datasets and more joins. This problem has become apparent as data is growing and becoming more interconnected. To cope with this, many companies have switched to Graph Databases as an alternative. 
+
+Graph databases are especially good at representing associative data, and like other NoSQL databases they have flexible schemas. Whereas query latency in a relational database is dependent on the size of the dataset, in graph databases it is dependent on how much of the graph you choose to search. This can be optimized by limiting paths with constraints and querying only what you need. (Thus it is highly scalable as well).
+
+Complex queries in aggregate databases usually require some sort of processing on the data, like MapReduce
+("For example, if we wanted to use MapReduce to count the number of Americans there are in a recording artists database, we’d need to extract all artist data and discard the non-American ones in the map phase. Then, we’d count the remaining records in the reduce phase.")
+
+tl;dr Relational databases are good for large discrete datasets, whereas graph databases are better for interconnected data where data relationships are significant. 
+
+      __   __          __       ___    __        __  
+ /\  |__) |__) |    | /  `  /\   |  | /  \ |\ | /__` .
+/--\ |    |    |___ | \__, /--\  |  | \__/ | \| .__/ .
+
+Some good applications of a graph database:
+Social Media (relationships between people, mutual interests, e.g dating websites)
+Recommendation Engine (Page Rank)
+Fraud Detection/Intelligence and Law enforcements (relationship between people, pattern of events)
+Bioinformatics research community (relationships between all the chemicals in the body)
+
+Some companies that have switched to graph databases: 
++ Facebook
++ Twitter
++ LinkedIn (working on one)
++ Glassdoor
++ Adidas ///
++ Wal-mart
++ eBay
+
+Some popular Graph DBMS (Database Managment Systems a.k.a programs):
++ Neo4j
++ OrientDB
++ Titan
++ ArangoDB
++ InfiniteGraph
++ AllegroGraph
+
+      ___  __       
+|\ | |__  /  \ |__|    | .
+| \| |___ \__/    | \__/ .
+
+SQL code:
+
+CREATE TABLE teachers (
+  teacher_id INTEGER,
+  name TEXT,
+  fav_student INTEGER
+);
+INSERT INTO teachers (teacher_id, name, fav_student);
+VALUES (
+  (0, 'Mr. Brown', 2),
+  (1, 'Mr. DW', 1)
+);
+
+SELECT students.name FROM students 
+WHERE students.student_id IN (SELECT students FROM courses WHERE name = 'Softdev') 
+AND students.student_id IN (SELECT students FROM courses WHERE name = 'Graphics')
+
+Neo4j code:
+
+CREATE (Brown:Teacher { name: 'Mr. Brown'})
+CREATE (You:Student { name: 'You'})
+CREATE (Softdev:Course { name:'Softdev'})
+CREATE (Brown) -[:TEACHES]-> (Softdev)
+CREATE (You) -[:TAKES]-> (Softdev)
+CREATE (Brown) -[:FAVORS]-> (You)
+
+MATCH (student:Student) -[:TAKES]-> (course:Course)
+WHERE course.name = 'Softdev' AND
+WHERE course.name = 'Graphics'
+RETURN student.name
+
+___                      __      ___  __   __             __  ___  ___              __    /
+ |  |__|  /\  |\ | |__/ /__`    |__  /  \ |__)    |    | /__`  |  |__  |\ | | |\ | / _`  / 
+ |  |  | /--\ | \| |  \ .__/    |    \__/ |  \    |___ | .__/  |  |___ | \| | | \| \__/ . 
+       ____
+    .'     `.
+   /  .-=-.  \   \ /
+   | (  C\ \  \_.'')
+  _\  `--' |,'   ,/
+ (__`.____.'__.-'
