@@ -1,0 +1,55 @@
+<html>
+<head>
+	<script type="text/javascript" src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+	<style>
+		h1 {
+			font: 26px;
+			font-family: Tahoma, sans-serif;
+			color: darkblue;
+		}
+		.legend div {
+			display: inline-block;
+			width: 10px;
+			height: 10px;
+		}
+		.chart {
+			display: inline-block;
+		}
+		.chart div {
+			font: 12px sans-serif;
+			background-color: steelblue;
+			text-align: right;
+			padding: 3px;
+			margin: 2px;
+			color: white;
+		}
+		.labels{
+			display: inline-block;
+		}
+		.labels div {
+			font: 12px sans-serif;
+			text-align: left;
+			padding: 3px;
+			margin: 2px;
+		}
+	</style>
+	<title>vegetables</title>
+	<h1>2016 Democratic Delegates by State</h1>
+</head>
+<body>
+	<div class='legend'>
+		<div style="background-color: steelblue;"></div> 
+		<span style="font: 12px Tahoma, sans-serif; font-weight:bold;">Pledged</span> 
+		<div style="background-color: Grey;"></div> 
+		<span style="font: 12px Tahoma, sans-serif; font-weight:bold;">Unpledged</span>
+		<br>
+		<span style="font: 12px Tahoma, sans-serif; font-weight:bold;">Total Delegates: 4763 Currently Pledged: 2006</span> 
+		<br>
+	</div>
+	<div class='labels'>
+	</div>
+	<div class='chart'>
+	</div>
+</body>
+<script type="text/javascript" src="index.js"></script>
+</html>
