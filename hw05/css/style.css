@@ -1,0 +1,30 @@
+h1 {
+	font: 26px;
+	font-family: Tahoma, sans-serif;
+	color: darkblue;
+}
+.legend div {
+	display: inline-block;
+	width: 10px;
+	height: 10px;
+}
+.chart {
+	display: inline-block;
+}
+.chart div {
+	font: 12px sans-serif;
+	background-color: steelblue;
+	text-align: right;
+	padding: 3px;
+	margin: 2px;
+	color: white;
+}
+.labels{
+	display: inline-block;
+}
+.labels div {
+	font: 12px sans-serif;
+	text-align: left;
+	padding: 3px;
+	margin: 2px;
+}
