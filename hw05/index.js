@@ -58,11 +58,6 @@ d3.select('.chart')
 .selectAll("div")
 .data(data)
 .enter().append('div')
-.style('width', function(d){
-	if( d.pledged == 0 )
-		return foo(d.total) + 'px';
-	else
-		return foo(d.pledged) + 'px'; })
 .style('background-color', function(d){
 	if( d.pledged == 0 )
 		return "DarkGrey";
@@ -81,3 +76,12 @@ d3.select('.labels')
 .enter().append('div')
 .text(function(d){
 	return d.state; });
+
+d3.select('.chart')
+.selectAll("div").transition()
+.duration(1500)
+.style('width', function(d){
+	if( d.pledged == 0 )
+		return foo(d.total) + 'px';
+	else
+		return foo(d.pledged) + 'px'; });
