@@ -1,0 +1,86 @@
+<!doctype html>
+{% extends "base.html" %}
+{%block title%}
+User Page
+{%endblock%}
+{%block style%}
+<style>
+      .l-box {
+        padding: 0.5em;
+      }
+      .poster {
+      word-break: break-all;
+      word-wrap: break-word;
+      }
+      .pure-img-responsive {
+      max-width: 100%;
+      height: 300px;
+      }
+      .padded {
+      padding: 50px;
+      }
+    </style>
+{%endblock%}
+{%block body%}
+	<h1>{{username['error']}}</h1>
+	{% if 'error' not in username %}
+    <div class="pure-g">
+      <div class="pure-u-0 pure-u-lg-1-4"></div>
+      <div class="pure-u-1 pure-u-lg-1-2">
+	<p><h1>{{username['name']}}'s profile</h1></p>
+      </div>
+      <div class="pure-u-0 pure-u-lg-1-4"></div>
+    </div>
+    <div class="pure-g">
+    <div class="pure-u-0 pure-u-lg-1-4"></div>
+    <div class="pure-u-1 pure-u-lg-1-2"><p>View {{username['name']}}'s posts</p></div>
+    <div class="pure-u-0 pure-u-lg-1-4"></div>
+    </div>
+        {% if posts|length == 0 %}
+      <div class="pure-g">
+      <div class="pure-u-1-2" align="center">
+        <p>No Results</p>
+      </div>
+      </div>
+    {% else %}
+      <div class="l-content">
+      {% for row_no in range((posts|length / 4 + 1)|int) %}
+        <div class="pricing-tables pure-g">
+          {% for post_no in range(4) %}
+            {% if (row_no * 4 + post_no) < posts|length %}
+              <div class="pure-u-1-4">
+              <div class="pricing-table pricing-table-free">
+                <tr>
+                  <td>  
+                    <a href="{{url_for('showpost',idp=posts[row_no * 4 + post_no]['_id'])}}">
+                    <img class="pure-img-responsive" src="{{posts[row_no * 4 + post_no]['file']}}">
+                    </a>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="padded">
+                    <b>{{posts[row_no * 4 + post_no]['name']}}</b> <i>from</i> 
+                    <b>{{posts[row_no * 4 + post_no]['restaurant']}}</b>
+                  </td>
+                </tr>
+              </div>
+          </div>
+          {% endif %}
+        {% endfor %}
+        </div>
+      {% endfor %}
+      </div>
+    {% endif %}
+    <script>
+      $SCRIPT_ROOT = {{request.script_root|tojson|safe}};
+	  
+	  function like(uid,pid){
+	  $.getJSON($SCRIPT_ROOT + "/like", {idu: uid, idp: pid },
+	  function(likes)
+	  {$("#likes"+pid).text(likes.likes + ' likes'); console.log(likes);}
+	  )
+	  
+      }
+    </script>
+    {% endif %}
+{%endblock%}

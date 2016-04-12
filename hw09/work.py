@@ -1,12 +1,26 @@
 import time
 
 def timer(fn):
-	startTime = time.time()
-	return lambda: fn.func_name + ': '+ fn() + '\nexecution time: ' + str(time.time() - startTime)
+	def inner(arg):
+		startTime = time.time()
+		fnReturn = fn(arg)
+		endTime = time.time()
+		return "execution time: " + str(endTime-startTime) + "\n" + fnReturn
+	return inner
+
+def logger(fn):
+	def inner(arg):
+		return fn.func_name + '(' + str(arg) + ')' + "\n" + fn(arg)
+	return inner 
 
 @timer
-def hello():
-	return "Hi Friend\n" * 5
+@logger
+def hello(n):
+	return "hello"*n
 
-helloF = hello()
-print helloF
+hellow = hello(1)
+hellow2 = hello(2)
+hellow3 = hello(3)
+print hellow
+print hellow2
+print hellow3
